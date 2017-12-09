@@ -15,8 +15,8 @@ module.exports = {
     get(app, {parser: 'appVariantPage'}, cb),
   estimateBestCandidate: (list, arch) => {
     const orig = list
-    if (arch == 'x86_64') arch = ['x64']
-    if (arch == 'arm64') arch = ['arm64', 'arm']
+    if (arch === 'x86_64') arch = ['x64']
+    if (arch === 'arm64') arch = ['arm64', 'arm']
     if (!Array.isArray(arch)) arch = [arch]
     list = list.filter(r => arch.indexOf(r.arch) !== -1) // only ones that have the right arch
     list = list.map(r => Object.assign({}, r)).map(r => {

@@ -29,7 +29,7 @@ function Crawl (url, opt, cb) {
     var $ = jquery(window)
     if (!PARSER[opt.parser]) return cb(new Error('Parser ' + opt.parser + ' is unknown!'))
     try {
-      PARSER[opt.parser]($, window, (...a) => setImmediate(() => cb(...a)))
+      PARSER[opt.parser]($, window, (...a) => setImmediate(() => cb(...a))) // eslint-disable-line standard/no-callback-literal
     } catch (err) {
       return cb(err)
     }

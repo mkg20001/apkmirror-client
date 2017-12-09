@@ -1,4 +1,4 @@
-const request = require('request')
+'use strict'
 
 module.exports = {
   appSearch: require('./appSearch'),

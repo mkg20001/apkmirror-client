@@ -12,13 +12,13 @@ const cell = [
     {key: 'loadVariant', value: get.appVariantPage.bind(null, e.find('a').eq(0)[0].href)}
   ],
   e => [ // arch
-    {key: 'arch', value: cleanText(e.text())},
+    {key: 'arch', value: cleanText(e.text())}
   ],
   e => [ // android Version
-    {key: 'androidVer', value: cleanText(e.text())},
+    {key: 'androidVer', value: cleanText(e.text())}
   ],
   e => [ // dpi
-    {key: 'dpi', value: cleanText(e.text())},
+    {key: 'dpi', value: cleanText(e.text())}
   ]
 ]
 

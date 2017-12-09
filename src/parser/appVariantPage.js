@@ -9,7 +9,7 @@ function getMatches (string, regex, index) {
   var matches = []
   var match
   while ((match = regex.exec(string))) {
-    matches.push(index.map(index => match[index]))
+    matches.push(index.map(index => match[index])) // eslint-disable-line no-loop-func
   }
   return matches
 }
