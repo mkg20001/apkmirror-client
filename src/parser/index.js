@@ -1,3 +1,4 @@
 module.exports = {
-  appSearch: require('./app-search')
+  appSearch: require('./appSearch'),
+  appPage: require('./appPage')
 }
