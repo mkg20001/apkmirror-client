@@ -9,7 +9,7 @@ const cell = [
     {key: 'date', value: cleanText(e.find('.dateyear_utc').text())},
     {key: 'id', value: cleanText(e.find('a').eq(0).text())},
     {key: 'url', value: e.find('a').eq(0)[0].href},
-    {key: 'downloadAPK', value: get.appVariantPage.bind(null, e.find('a').eq(1).text())}
+    {key: 'loadVariant', value: get.appVariantPage.bind(null, e.find('a').eq(0)[0].href)}
   ],
   e => [ // arch
     {key: 'arch', value: cleanText(e.text())},

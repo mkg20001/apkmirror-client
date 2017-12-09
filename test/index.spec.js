@@ -43,7 +43,7 @@ describe('search', () => {
     })
   })
 
-  it('should get latest non-beta ver for whatsapp', cb => {
+  it('should get latest non-beta release for whatsapp', cb => {
     wa.latest.loadRelease((err, res) => {
       expect(err).to.not.exist()
       // console.log(res, res.estimateBestCandidate('arm64'))
@@ -58,6 +58,31 @@ describe('search', () => {
       expect(res.dev.name).to.equal(wa.dev.name)
       expect(res.dev.url).to.equal(wa.dev.url)
       cb()
+    })
+  })
+
+  it('should get the variant of that release', cb => {
+    wa.dl.loadVariant((err, res) => {
+      expect(err).to.not.exist()
+      // console.log(res)
+      wa.dlfinal = res
+      expect(res.play.url).to.equal('https://play.google.com/store/apps/details?id=com.whatsapp')
+      expect(res.play.id).to.equal('com.whatsapp')
+      expect(res.play.category).to.equal('Communication')
+      expect(res.play.categoryUrl).to.equal('https://www.apkmirror.com/categories/communication/')
+      expect(res.app.name).to.equal(wa.app.name)
+      expect(res.app.url).to.equal(wa.app.url)
+      expect(res.dev.name).to.equal(wa.dev.name)
+      expect(res.dev.url).to.equal(wa.dev.url)
+      cb()
+    })
+  })
+
+  it('should download the apk', cb => {
+    wa.dlfinal.downloadAPK((err, apk) => {
+      expect(err).to.not.exist()
+      apk.pipe(require('fs').createWriteStream(require('path').join(require('os').tmpdir(), Math.random().toString())))
+      apk.once('data', () => cb())
     })
   })
 })

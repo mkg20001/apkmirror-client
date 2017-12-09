@@ -2,6 +2,7 @@
 
 const appPageBasic = require('./appPageBasic')
 const cleanText = s => s.replace(/\n/g, '').trim()
+const get = require('..')
 
 function getMatches (string, regex, index) {
   index = index || [1] // default to the first capturing group
@@ -18,7 +19,7 @@ module.exports = ($, window, cb) => {
   res.changelog = $('.notes').eq(1).text()
   res.download = $('.downloadButton')[0].href
   const [ver, size, aver, dpi] = $('.appspec-value').toArray()
-  console.log(ver)
+  cleanText($(ver).text()) // TODO: use this element
   res.dpi = cleanText($(dpi).text())
   res.url = window.location.href
   res.size = cleanText($(size).text())
@@ -32,6 +33,7 @@ module.exports = ($, window, cb) => {
     a[b[0]] = b[1]
     return a
   }, {})
+  res.downloadAPK = get.downloadAPK.bind(null, res.download)
 
   cb(null, res)
 }

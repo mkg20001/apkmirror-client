@@ -1,5 +1,9 @@
 'use strict'
 
+const request = require('request')
+const debug = require('debug')
+const log = debug('apkmirror-client')
+
 module.exports = {
   searchForApps: (query, cb) =>
     get('https://www.apkmirror.com/?post_type=app_release&searchtype=app&s=' + encodeURI(query), {parser: 'appSearch'}, cb),
@@ -9,8 +13,6 @@ module.exports = {
     get(app, {parser: 'appReleasePage'}, cb),
   appVariantPage: (app, cb) =>
     get(app, {parser: 'appVariantPage'}, cb),
-  downloadAPK: (app, cb) =>
-    get(app, {parser: 'appDownloadPage'}, cb),
   estimateBestCandidate: (list, arch) => {
     const orig = list
     if (arch == 'x86_64') arch = ['x64']
@@ -51,6 +53,13 @@ module.exports = {
 
     const res = list.pop()
     return res ? orig.filter(i => i.id === res.id)[0] : false
+  },
+  downloadAPK: (url, cb) => {
+    get(url, {parser: 'appDownloadPage'}, (err, url) => {
+      if (err) return cb(err)
+      log('download apk from %s', url)
+      cb(null, request.get(url))
+    })
   }
 }
 
