@@ -1,0 +1,36 @@
+{
+  "name": "apkmirror-client",
+  "version": "0.0.1",
+  "description": "Client to download APKs from Apkmirror",
+  "main": "index.js",
+  "scripts": {
+    "test": "aegir test -t node",
+    "lint": "aegir lint",
+    "build": "aegir build",
+    "test:node": "aegir test -t node",
+    "release": "aegir release",
+    "release-minor": "aegir release --type minor",
+    "release-major": "aegir release --type major",
+    "coverage": "aegir coverage",
+    "coverage-publish": "aegir coverage -u"
+  },
+  "keywords": [
+    "apkmirror",
+    "apk",
+    "download",
+    "client"
+  ],
+  "author": "Maciej Krüger <mkg20001@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "data-queue": "0.0.3",
+    "debug": "^3.1.0",
+    "jquery": "^3.2.1",
+    "jsdom": "^11.5.1"
+  },
+  "devDependencies": {
+    "aegir": "^12.2.0",
+    "chai": "^4.1.2",
+    "dirty-chai": "^2.0.1"
+  }
+}
