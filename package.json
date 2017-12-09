@@ -2,7 +2,7 @@
   "name": "apkmirror-client",
   "version": "0.1.0",
   "description": "Client to download APKs from Apkmirror",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "aegir test -t node",
     "lint": "aegir lint",
