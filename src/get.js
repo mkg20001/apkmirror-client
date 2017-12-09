@@ -6,6 +6,7 @@ const jquery = require('jquery')
 const Queue = require('data-queue')
 const debug = require('debug')
 const log = debug('apkmirror-client:get')
+const PARSER = require('./parser')
 
 let q = global.APKMIRROR_QUEUE
 let newQ
@@ -26,8 +27,9 @@ function Crawl (url, opt, cb) {
   }).then(dom => {
     const {window} = dom
     var $ = jquery(window)
+    if (!PARSER[opt.parser]) return cb(new Error('Parser ' + opt.parser + ' is unknown!'))
     try {
-      require('./parser/' + opt.parser)($, window, (...a) => setImmediate(() => cb(...a)))
+      PARSER[opt.parser]($, window, (...a) => setImmediate(() => cb(...a)))
     } catch (err) {
       return cb(err)
     }
