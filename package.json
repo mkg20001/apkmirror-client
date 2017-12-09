@@ -32,5 +32,16 @@
     "aegir": "^12.2.0",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkg20001/apkmirror-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mkg20001/apkmirror-client/issues"
+  },
+  "homepage": "https://github.com/mkg20001/apkmirror-client#readme"
 }

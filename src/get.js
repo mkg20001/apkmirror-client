@@ -21,23 +21,14 @@ module.exports = (url, opt, cb) => {
 
 function Crawl (url, opt, cb) {
   JSDOM.fromURL(url, {
-    scripts: [],
-        // userAgent:"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
-    resourceLoader: function (resource, callback) {
-          // var pathname = resource.url.pathname;
-      console.log('[%s] => %s', url, resource.url)
-      return resource.defaultFetch(callback)
-    }
+    scripts: []
+    // userAgent:"Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
   }).then(dom => {
     const {window} = dom
     var $ = jquery(window)
     try {
-      require('./parser/' + opt.parser)($, window, cb, (err, res) => {
-        if (err) console.error('Crawler Error: %s', err.toString())
-        return cb(err, res)
-      })
+      require('./parser/' + opt.parser)($, window, (...a) => setImmediate(() => cb(...a)))
     } catch (err) {
-      console.error('Crawler Error: %s', err.toString())
       return cb(err)
     }
   }, cb)
