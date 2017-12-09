@@ -43,5 +43,8 @@
   "bugs": {
     "url": "https://github.com/mkg20001/apkmirror-client/issues"
   },
-  "homepage": "https://github.com/mkg20001/apkmirror-client#readme"
+  "homepage": "https://github.com/mkg20001/apkmirror-client#readme",
+  "contributors": [
+    "mkg20001 <mkg20001@gmail.com>"
+  ]
 }
