@@ -1,7 +1,7 @@
 {
   "name": "apkmirror-client",
   "version": "0.1.1",
-  "description": "Client to download APKs from Apkmirror",
+  "description": "Download APKs from APKMirror.com",
   "main": "src/index.js",
   "scripts": {
     "test": "aegir test -t node",
@@ -25,11 +25,11 @@
   "dependencies": {
     "data-queue": "0.0.3",
     "debug": "^3.1.0",
-    "jquery": "^3.2.1",
-    "jsdom": "^11.5.1"
+    "jquery": "^3.3.1",
+    "jsdom": "^11.10.0"
   },
   "devDependencies": {
-    "aegir": "^12.2.0",
+    "aegir": "^13.1.0",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1"
   },

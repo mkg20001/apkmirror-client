@@ -1,5 +1,8 @@
 'use strict'
 
+const debug = require('debug')
+const log = debug('apkmirror-client:app:search')
+
 const appRow = require('./appRow')
 
 module.exports = ($, window, cb) => {
@@ -8,5 +11,8 @@ module.exports = ($, window, cb) => {
     i++
     return appRow(e, $($('#content').find('.infoSlide')[i]), $, true)
   })
+
+  log('search found %s results', res.length)
+
   cb(null, res)
 }

@@ -55,11 +55,8 @@ module.exports = {
     return res ? orig.filter(i => i.id === res.id)[0] : false
   },
   downloadAPK: (url, cb) => {
-    get(url, {parser: 'appDownloadPage'}, (err, url) => {
-      if (err) return cb(err)
-      log('download apk from %s', url)
-      cb(null, request.get(url))
-    })
+    log('download apk from %s', url)
+    cb(null, request.get(url))
   }
 }
 

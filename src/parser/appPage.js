@@ -1,5 +1,8 @@
 'use strict'
 
+const debug = require('debug')
+const log = debug('apkmirror-client:app:page')
+
 const appRow = require('./appRow')
 const appPageBasic = require('./appPageBasic')
 const get = require('..')
@@ -46,5 +49,7 @@ module.exports = ($, window, cb) => {
       return obj
     }, {})
   })
+
+  log('got app page for %s', JSON.stringify(res.app.name))
   cb(null, res)
 }

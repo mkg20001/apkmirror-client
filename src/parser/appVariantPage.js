@@ -1,5 +1,8 @@
 'use strict'
 
+const debug = require('debug')
+const log = debug('apkmirror-client:app:variant-page')
+
 const appPageBasic = require('./appPageBasic')
 const cleanText = s => s.replace(/\n/g, '').trim()
 const get = require('..')
@@ -34,6 +37,8 @@ module.exports = ($, window, cb) => {
     return a
   }, {})
   res.downloadAPK = get.downloadAPK.bind(null, res.download)
+
+  log('got variant page for %s', JSON.stringify(res.app.name))
 
   cb(null, res)
 }

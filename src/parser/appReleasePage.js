@@ -1,5 +1,8 @@
 'use strict'
 
+const debug = require('debug')
+const log = debug('apkmirror-client:app:release-page')
+
 const appPageBasic = require('./appPageBasic')
 const cleanText = s => s.replace(/\n/g, '').trim()
 const get = require('..')
@@ -32,6 +35,8 @@ module.exports = ($, window, cb) => {
     }, {})
   })
   res.estimateBestCandidate = get.estimateBestCandidate.bind(null, res.variants)
+
+  log('got release page for %s', JSON.stringify(res.app.name))
 
   cb(null, res)
 }
