@@ -1,6 +1,6 @@
 {
   "name": "apkmirror-client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Download APKs from APKMirror.com",
   "main": "src/index.js",
   "scripts": {
