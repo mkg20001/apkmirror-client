@@ -10,7 +10,8 @@ module.exports = $ => {
     },
     app: {
       name: $('.breadcrumbs').find('a').eq(1).text(),
-      url: $('.breadcrumbs').find('a').eq(1)[0].href
+      url: $('.breadcrumbs').find('a').eq(1)[0].href,
+      icon: $('.siteTitleBar').find('img')[0].src
     },
     dev: {
       display: $('.dev-title').text(),

@@ -5,6 +5,7 @@ const log = debug('apkmirror-client:app:page')
 
 const appRow = require('./appRow')
 const appPageBasic = require('./appPageBasic')
+const varintLatest = require('./varintLatest')
 const get = require('..')
 
 module.exports = ($, window, cb) => {
@@ -43,12 +44,12 @@ module.exports = ($, window, cb) => {
     v.loadRelease = get.getReleasePage.bind(null, v.details.url)
     return v
   })
-  res.variants = $('#variants').find('.table-row').toArray().slice(1).map(e => $(e).find('.table-cell').toArray()).map((row, i) => {
+  res.variants = varintLatest($('#variants').find('.table-row').toArray().slice(1).map(e => $(e).find('.table-cell').toArray()).map((row, i) => {
     return row.map((e, ii) => cell[ii]($(e), i)).reduce((a, b) => a.concat(Array.isArray(b) ? b : [b])).reduce((obj, v) => {
       obj[v.key] = v.value
       return obj
     }, {})
-  })
+  }))
 
   log('got app page for %s', JSON.stringify(res.app.name))
   cb(null, res)

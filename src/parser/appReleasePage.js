@@ -5,6 +5,7 @@ const log = debug('apkmirror-client:app:release-page')
 
 const appPageBasic = require('./appPageBasic')
 const cleanText = s => s.replace(/\n/g, '').trim()
+const varintLatest = require('./varintLatest')
 const get = require('..')
 
 const cell = [
@@ -28,12 +29,12 @@ const cell = [
 module.exports = ($, window, cb) => {
   const res = appPageBasic($)
   res.changelog = $('.notes').eq(1).text()
-  res.variants = $('.variants-table').find('.table-row').toArray().slice(1).map(e => $(e).find('.table-cell').toArray()).map((row, i) => {
+  res.variants = varintLatest($('.variants-table').find('.table-row').toArray().slice(1).map(e => $(e).find('.table-cell').toArray()).map((row, i) => {
     return row.map((e, ii) => cell[ii]($(e), i)).reduce((a, b) => a.concat(Array.isArray(b) ? b : [b])).reduce((obj, v) => {
       obj[v.key] = v.value
       return obj
     }, {})
-  })
+  }))
   res.estimateBestCandidate = get.estimateBestCandidate.bind(null, res.variants)
 
   log('got release page for %s', JSON.stringify(res.app.name))
