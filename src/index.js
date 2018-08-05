@@ -56,11 +56,15 @@ module.exports = {
   },
   downloadAPK: (url, cb) => {
     log('download apk from %s', url)
-    get(url, {parser: 'appDownloadPage'}, (err, url) => {
-      if (err) return cb(err)
-      log('download apk from %s', url)
+    if (url.indexOf('download.php') === -1) {
+      get(url, {parser: 'appDownloadPage'}, (err, url) => {
+        if (err) return cb(err)
+        log('download apk from %s', url)
+        cb(null, request.get(url))
+      })
+    } else {
       cb(null, request.get(url))
-    })
+    }
   }
 }
 
