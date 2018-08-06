@@ -5,8 +5,8 @@ const debug = require('debug')
 const log = debug('apkmirror-client')
 
 module.exports = {
-  searchForApps: (query, cb) =>
-    get('https://www.apkmirror.com/?post_type=app_release&searchtype=app&s=' + encodeURI(query), {parser: 'appSearch'}, cb),
+  searchForApps: (query, cb, page) =>
+    get('https://www.apkmirror.com/?post_type=app_release&searchtype=app&s=' + encodeURI(query) + (page ? '&page=' + page : ''), {parser: 'appSearch'}, cb),
   getAppPage: (app, cb) =>
     get(app.app ? app.app.url : app, {parser: 'appPage'}, cb),
   getReleasePage: (app, cb) =>
