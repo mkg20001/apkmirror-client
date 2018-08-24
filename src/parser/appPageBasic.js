@@ -5,8 +5,8 @@ module.exports = $ => {
     play: {
       url: $('.playstore-icon').parent()[0].href,
       id: $('.playstore-icon').parent()[0].href.split('=').pop(),
-      category: $('.play-category').text(),
-      categoryUrl: $('.play-category')[0].href
+      category: $('.play-category').length ? $('.play-category').text() : null,
+      categoryUrl: $('.play-category').length ? $('.play-category')[0].href : null
     },
     app: {
       name: $('.breadcrumbs').find('a').eq(1).text(),
