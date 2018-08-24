@@ -26,7 +26,9 @@ module.exports = ($, window, cb) => {
   res.dpi = cleanText($(dpi).text())
   res.url = window.location.href
   res.size = cleanText($(size).text())
-  res.version = getMatches($(aver).text(), /([a-z]+): (.+) \((.+)\) *$/gmi, [1, 2, 3]).map(v => {
+  res.version = cleanText($($('.appspec-value')[0]).text().split('\n')[0].substr('Version: '.length).split(' ')[0])
+  res.id = parseInt(cleanText($($('.appspec-value')[0]).text().split('\n')[0].substr('Version: '.length).split(' ')[1].replace(/[^0-9]/g, '')), 10)
+  res.androidVer = getMatches($(aver).text(), /([a-z]+): (.+) \((.+)\) *$/gmi, [1, 2, 3]).map(v => {
     const [name, value, adt] = v
     return [name.toLowerCase(), {
       name: value,

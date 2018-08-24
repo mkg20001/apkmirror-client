@@ -3,6 +3,7 @@
 const debug = require('debug')
 const log = debug('apkmirror-client:app:release-page')
 
+const appVariantPage = require('./appVariantPage')
 const appPageBasic = require('./appPageBasic')
 const cleanText = s => s.replace(/\n/g, '').trim()
 const varintLatest = require('./varintLatest')
@@ -35,6 +36,9 @@ module.exports = ($, window, cb) => {
       return obj
     }, {})
   }))
+  if (!res.variants.length) {
+    return appVariantPage($, window, cb)
+  }
   res.estimateBestCandidate = get.estimateBestCandidate.bind(null, res.variants)
 
   log('got release page for %s', JSON.stringify(res.app.name))
